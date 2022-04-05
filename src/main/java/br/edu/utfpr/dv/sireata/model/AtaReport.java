@@ -64,15 +64,15 @@ public class AtaReport {
 	}
 	public String getStringParticipantesMembros(){
 		if((this.getParticipantesMembros() != null) && (this.getParticipantesMembros().size() > 0)){
-			String retorno = this.getParticipantesMembros().get(0).getNome();
+			StringBuilder retorno = new StringBuilder(this.getParticipantesMembros().get(0).getNome());
 			
 			for(int i = 1; i < this.getParticipantesMembros().size(); i++){
-				retorno += ", " + this.getParticipantesMembros().get(i).getNome();
+				retorno.append(", ").append(this.getParticipantesMembros().get(i).getNome());
 			}
 			
-			retorno += ".";
+			retorno.append(".");
 			
-			return retorno;
+			return retorno.toString();
 		}else{
 			return "";
 		}
