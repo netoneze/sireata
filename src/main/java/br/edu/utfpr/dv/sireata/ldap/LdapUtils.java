@@ -303,8 +303,6 @@ public class LdapUtils {
 
 					if (i + 1 == 3) {
 						throw ce;
-					} else {
-						continue;
 					}
 				}
 			}
