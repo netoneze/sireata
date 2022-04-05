@@ -184,8 +184,7 @@ public class LdapUtils {
 		}
 
 		ldap = new InitialDirContext(env);
-		if (ldap != null)
-			ldap.close();
+		ldap.close();
 	}
 
 	/**
