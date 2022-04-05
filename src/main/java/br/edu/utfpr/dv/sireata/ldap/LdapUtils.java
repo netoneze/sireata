@@ -120,7 +120,7 @@ public class LdapUtils {
 
 		Hashtable<String, Object> env = createNoUserLdapProperties(url);
 
-		DirContext ctx = null;
+		DirContext ctx;
 		ctx = new InitialDirContext(env);
 		return ctx;
 	}
