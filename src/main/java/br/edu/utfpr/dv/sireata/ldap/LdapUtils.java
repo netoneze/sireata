@@ -533,6 +533,7 @@ public class LdapUtils {
 			throw e;
 		} finally {
 			// Close the context when we're done
+			assert ctx != null;
 			ctx.close();
 		}
 
