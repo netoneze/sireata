@@ -9,19 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Pauta;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class PautaDAO {
-	
+	private DAOUtils daoUtils;
+
 	public Pauta buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM pautas WHERE idPauta = ?");
-		
-			stmt.setInt(1, id);
+			stmt = daoUtils.handlePrepareStatement("SELECT * FROM pautas WHERE idPauta = ?", id);
 			
 			rs = stmt.executeQuery();
 			

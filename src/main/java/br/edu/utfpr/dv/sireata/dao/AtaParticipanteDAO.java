@@ -9,21 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
-
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 public class AtaParticipanteDAO {
-	
+	private DAOUtils daoUtils;
+
 	public AtaParticipante buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement("SELECT ataparticipantes.*, usuarios.nome AS nomeParticipante FROM ataparticipantes " +
+			stmt = daoUtils.handlePrepareStatement("SELECT ataparticipantes.*, usuarios.nome AS nomeParticipante FROM ataparticipantes " +
 				"INNER JOIN usuarios ON usuarios.idUsuario=ataparticipantes.idUsuario " +
-				"WHERE idAtaParticipante = ?");
-		
-			stmt.setInt(1, id);
+				"WHERE idAtaParticipante = ?", id);
 			
 			rs = stmt.executeQuery();
 			

@@ -10,19 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Campus;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class CampusDAO {
-	
+	private DAOUtils daoUtils;
+
 	public Campus buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM campus WHERE idCampus = ?");
-		
-			stmt.setInt(1, id);
+			stmt = daoUtils.handlePrepareStatement("SELECT * FROM campus WHERE idCampus = ?", id);
 			
 			rs = stmt.executeQuery();
 			

@@ -10,19 +10,17 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Comentario;
 import br.edu.utfpr.dv.sireata.model.Comentario.SituacaoComentario;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class ComentarioDAO {
-	
+	private DAOUtils daoUtils;
+
 	public Comentario buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM comentarios WHERE idComentario = ?");
-		
-			stmt.setInt(1, id);
+			stmt = daoUtils.handlePrepareStatement("SELECT * FROM comentarios WHERE idComentario = ?", id);
 			
 			rs = stmt.executeQuery();
 			

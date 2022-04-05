@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Usuario;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class UsuarioDAO {
+	private DAOUtils daoUtils;
 	
 	public Usuario buscarPorLogin(String login) throws SQLException{
 		Connection conn = null;
@@ -41,15 +43,11 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement("SELECT * FROM usuarios WHERE idUsuario = ?");
-		
-			stmt.setInt(1, id);
+			stmt = daoUtils.handlePrepareStatement("SELECT * FROM usuarios WHERE idUsuario = ?", id);
 			
 			rs = stmt.executeQuery();
 			

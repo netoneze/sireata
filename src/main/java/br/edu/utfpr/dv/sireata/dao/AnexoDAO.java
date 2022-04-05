@@ -9,20 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Anexo;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class AnexoDAO {
-	
-	public Anexo buscarPorId(int id) throws SQLException{
-		Connection conn = null;
+	private DAOUtils daoUtils;
+
+	public AnexoDAO buscarPorId(int id) throws SQLException{
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement("SELECT anexos.* FROM anexos " +
-				"WHERE idAnexo = ?");
-		
-			stmt.setInt(1, id);
+			stmt = daoUtils.handlePrepareStatement("SELECT anexos.* FROM anexos " +
+				"WHERE idAnexo = ?", id);
 			
 			rs = stmt.executeQuery();
 			

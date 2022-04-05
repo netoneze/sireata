@@ -11,25 +11,23 @@ import java.util.List;
 import br.edu.utfpr.dv.sireata.model.Orgao;
 import br.edu.utfpr.dv.sireata.model.OrgaoMembro;
 import br.edu.utfpr.dv.sireata.model.Usuario;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class OrgaoDAO {
-	
+	private DAOUtils daoUtils;
+
 	public Orgao buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement(
+			stmt = daoUtils.handlePrepareStatement(
 				"SELECT orgaos.*, p.nome AS presidente, s.nome AS secretario, departamentos.nome AS departamento FROM orgaos " +
 				"INNER JOIN departamentos ON departamentos.iddepartamento=orgaos.iddepartamento " +
 				"INNER JOIN usuarios p ON p.idusuario=orgaos.idpresidente " +
 				"INNER JOIN usuarios s ON s.idusuario=orgaos.idsecretario " +
-				"WHERE orgaos.idOrgao = ?");
-		
-			stmt.setInt(1, id);
-			
+				"WHERE orgaos.idOrgao = ?", id);
+
 			rs = stmt.executeQuery();
 			
 			if(rs.next()){

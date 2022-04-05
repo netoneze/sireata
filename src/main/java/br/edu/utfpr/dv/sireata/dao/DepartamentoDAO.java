@@ -10,22 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Departamento;
+import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
 public class DepartamentoDAO {
+	private DAOUtils daoUtils;
 
 	public Departamento buscarPorId(int id) throws SQLException{
-		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
-			stmt = conn.prepareStatement(
+			stmt = daoUtils.handlePrepareStatement(
 				"SELECT departamentos.*, campus.nome AS nomeCampus " +
 				"FROM departamentos INNER JOIN campus ON campus.idCampus=departamentos.idCampus " +
-				"WHERE idDepartamento = ?");
-		
-			stmt.setInt(1, id);
+				"WHERE idDepartamento = ?", id);
 			
 			rs = stmt.executeQuery();
 			
