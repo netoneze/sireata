@@ -12,12 +12,13 @@ import br.edu.utfpr.dv.sireata.model.Usuario;
 public class ComboUsuario extends ComboBox {
 	
 private List<Usuario> list;
-	
+	static final String COMPONENT_WIDTH = "400px";
+
 	public ComboUsuario(String caption){
 		super(caption);
 		this.setInvalidAllowed(false);
 		this.setNullSelectionAllowed(false);
-		this.setWidth("400px");
+		this.setWidth(COMPONENT_WIDTH);
 		this.carregaCombo();
 	}
 	

@@ -11,9 +11,10 @@ import br.com.caelum.stella.inwords.InteiroSemFormato;
 import br.com.caelum.stella.inwords.NumericToWordsConverter;
 
 public class StringUtils {
+	static final double DIGEST_VALUE = 512;
 
 	public static String generateSHA3Hash(String s){
-		SHA3.DigestSHA3 digestSHA3 = new SHA3.DigestSHA3(512);
+		SHA3.DigestSHA3 digestSHA3 = new SHA3.DigestSHA3(DIGEST_VALUE);
 	    byte[] digest = digestSHA3.digest(s.getBytes());
 
 	    return Hex.toHexString(digest);

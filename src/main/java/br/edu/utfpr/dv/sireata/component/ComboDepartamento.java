@@ -16,11 +16,12 @@ public class ComboDepartamento extends NativeSelect {
 	private List<Departamento> list;
 	private int idCampus;
 	private TipoFiltro tipoFiltro;
-	
+	static final String COMPONENT_WIDTH = "400px";
+
 	public ComboDepartamento(int idCampus, TipoFiltro tipoFiltro){
 		super("Departamento");
 		this.setNullSelectionAllowed(false);
-		this.setWidth("400px");
+		this.setWidth(COMPONENT_WIDTH);
 		this.idCampus = idCampus;
 		this.tipoFiltro = tipoFiltro;
 		this.carregaCombo();
