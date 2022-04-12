@@ -720,7 +720,7 @@ public class AtaDAO {
 			conn.setAutoCommit(true);
 			if((stmt != null) && !stmt.isClosed())
 				stmt.close();
-			if((conn != null) && !conn.isClosed())
+			if(!conn.isClosed())
 				conn.close();
 		}
 	}
