@@ -86,11 +86,12 @@ public class OrgaoBO {
 	public List<Orgao> listar(int idCampus, int idDepartamento) throws Exception{
 		if(idDepartamento > 0){
 			return this.listarPorDepartamento(idDepartamento);
-		}else if(idCampus > 0){
-			return this.listarPorCampus(idCampus);
-		}else{
-			return this.listarTodos(true);
 		}
+		if(idCampus > 0){
+			return this.listarPorCampus(idCampus);
+		}
+		
+		return this.listarTodos(true);
 	}
 	
 	public Usuario buscarPresidente(int idOrgao) throws Exception{
