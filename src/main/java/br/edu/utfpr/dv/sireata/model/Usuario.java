@@ -82,11 +82,7 @@ public class Usuario {
         if (!(object instanceof Usuario)) {
             return false;
         }
-		if (this.getIdUsuario() == ((Usuario)object).getIdUsuario()){
-        	return true;
-        }
-
-		return false;
-    }
+		return this.getIdUsuario() == ((Usuario) object).getIdUsuario();
+	}
 
 }
