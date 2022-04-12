@@ -127,5 +127,9 @@ public class DateUtils {
 		
 		return cal.getTime();
 	}
+
+	public static String[] getAllMonths(){
+		return new String[]{"janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
+	}
 	
 }

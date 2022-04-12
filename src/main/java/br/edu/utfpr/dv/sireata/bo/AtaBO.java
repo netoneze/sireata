@@ -29,6 +29,8 @@ import br.edu.utfpr.dv.sireata.model.AtaReport;
 import br.edu.utfpr.dv.sireata.model.Orgao;
 import br.edu.utfpr.dv.sireata.model.ParticipanteReport;
 
+import static br.edu.utfpr.dv.sireata.util.DateUtils.getAllMonths;
+
 public class AtaBO {
 	
 	public Ata buscarPorId(int id) throws Exception{
@@ -497,7 +499,7 @@ public class AtaBO {
 		int hora = DateUtils.getHour(data);
 		int minuto = DateUtils.getMinute(data);
 		String resultado = "Ao";
-		String[] meses = {"janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
+		String[] meses = getAllMonths();
 		
 		if(dia > 1){
 			resultado += "s ";
