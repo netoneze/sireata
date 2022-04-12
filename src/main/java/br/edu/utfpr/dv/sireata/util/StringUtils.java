@@ -26,8 +26,8 @@ public class StringUtils {
 	}
 	
 	public static String getExtensoOrdinal(int numero, boolean feminino){
-		String[] unidades = {"primeir", "segund", "terceir", "quart", "quint", "sext", "s�tim", "oitav", "non"};
-		String[] dezenas = {"d�cim", "vig�sim", "trig�sim", "quadrag�sim", "quinquag�sim", "sextag�sim", "septuag�sim", "octag�sim", "nonag�sim"};
+		String[] unidades = getUnidades();
+		String[] dezenas = getDezenas();
 		int unidade = (numero % 10), dezena = (numero / 10);
 		String retorno = "";
 		
@@ -45,5 +45,13 @@ public class StringUtils {
 		
 		return retorno.trim();
  	}
-	
+
+	private static String[] getDezenas() {
+		return new String[]{"d�cim", "vig�sim", "trig�sim", "quadrag�sim", "quinquag�sim", "sextag�sim", "septuag�sim", "octag�sim", "nonag�sim"};
+	}
+
+	private static String[] getUnidades() {
+		return new String[]{"primeir", "segund", "terceir", "quart", "quint", "sext", "s�tim", "oitav", "non"};
+	}
+
 }
