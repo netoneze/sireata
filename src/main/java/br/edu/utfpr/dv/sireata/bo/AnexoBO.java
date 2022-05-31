@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.edu.utfpr.dv.sireata.dao.AnexoDAO;
+import br.edu.utfpr.dv.sireata.factory.DAO;
+import br.edu.utfpr.dv.sireata.factory.DAOFactory;
 import br.edu.utfpr.dv.sireata.model.Anexo;
 
 public class AnexoBO {
 
 	public Anexo buscarPorId(int id) throws Exception{
 		try{
-			AnexoDAO dao = new AnexoDAO();
-			
-			return dao.buscarPorId(id);
+			DAOFactory daoFactory = new DAOFactory();
+
+			DAO dao = daoFactory.getDAO("Anexo");
+
+			return (Anexo) dao.buscarPodId(id);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -21,11 +24,13 @@ public class AnexoBO {
 		}
 	}
 	
-	public List<Anexo> listarPorAta(int idAta) throws Exception{
+	public List listarPorAta(int idAta) throws Exception{
 		try{
-			AnexoDAO dao = new AnexoDAO();
+			DAOFactory daoFactory = new DAOFactory();
+
+			DAO dao = daoFactory.getDAO("Anexo");
 			
-			return dao.listarPorAta(idAta);
+			return dao.listarPor(idAta);
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
 			
@@ -49,8 +54,11 @@ public class AnexoBO {
 			}
 			
 			this.validarDados(anexo);
-			
-			AnexoDAO dao = new AnexoDAO();
+
+			DAOFactory daoFactory = new DAOFactory();
+
+			DAO dao = daoFactory.getDAO("Anexo");
+
 			
 			return dao.salvar(anexo);
 		}catch(Exception e){
@@ -66,7 +74,9 @@ public class AnexoBO {
 	
 	public void excluir(int id) throws Exception{
 		try{
-			AnexoDAO dao = new AnexoDAO();
+			DAOFactory daoFactory = new DAOFactory();
+
+			DAO dao = daoFactory.getDAO("Anexo");
 			
 			dao.excluir(id);
 		}catch(Exception e){
