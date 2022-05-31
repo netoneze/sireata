@@ -8,13 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.utfpr.dv.sireata.factory.DAO;
 import br.edu.utfpr.dv.sireata.model.Pauta;
 import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
-public class PautaDAO {
+public class PautaDAO implements DAO<Pauta> {
 	private DAOUtils daoUtils;
 
-	public Pauta buscarPorId(int id) throws SQLException{
+	@Override
+	public Pauta buscarPodId(int id) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
@@ -37,8 +39,9 @@ public class PautaDAO {
 				conn.close();
 		}
 	}
-	
-	public List<Pauta> listarPorAta(int idAta) throws SQLException{
+
+	@Override
+	public List<Pauta> listarPor(int id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -65,7 +68,8 @@ public class PautaDAO {
 				conn.close();
 		}
 	}
-	
+
+	@Override
 	public int salvar(Pauta pauta) throws SQLException{
 		boolean insert = (pauta.getIdPauta() == 0);
 		Connection conn = null;
@@ -110,7 +114,8 @@ public class PautaDAO {
 				conn.close();
 		}
 	}
-	
+
+	@Override
 	public void excluir(int id) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;

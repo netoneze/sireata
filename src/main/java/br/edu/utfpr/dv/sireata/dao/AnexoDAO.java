@@ -8,13 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.utfpr.dv.sireata.factory.DAO;
 import br.edu.utfpr.dv.sireata.model.Anexo;
 import br.edu.utfpr.dv.sireata.util.DAOUtils;
 
-public class AnexoDAO {
+public class AnexoDAO implements DAO<Anexo> {
 	private DAOUtils daoUtils;
 
-	public AnexoDAO buscarPorId(int id) throws SQLException{
+	@Override
+	public Anexo buscarPodId(int id) throws SQLException {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
@@ -38,8 +40,9 @@ public class AnexoDAO {
 				conn.close();
 		}
 	}
-	
-	public List<Anexo> listarPorAta(int idAta) throws SQLException{
+
+	@Override
+	public List<Anexo> listarPor(int id) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -67,8 +70,9 @@ public class AnexoDAO {
 				conn.close();
 		}
 	}
-	
-	public int salvar(Anexo anexo) throws SQLException{
+
+	@Override
+	public int salvar(Anexo anexo) throws SQLException {
 		boolean insert = (anexo.getIdAnexo() == 0);
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -112,7 +116,8 @@ public class AnexoDAO {
 				conn.close();
 		}
 	}
-	
+
+	@Override
 	public void excluir(int id) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
